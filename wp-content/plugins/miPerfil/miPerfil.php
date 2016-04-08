@@ -18,7 +18,9 @@ class WPPluign{
 
         add_action( 'add_meta_boxes', array( $this, 'register_meta_boxes' ) );
          add_action( 'save_post', array( $this, 'save_meta_boxes' ) );
+        add_filter( 'template_include', 'include_template_function', 1 );
 
+        add_filter( 'template_include', 'include_template_function', 1 );
     }
 
     /**
@@ -149,6 +151,21 @@ class WPPluign{
             .wp_themeSkin .toomanychars .word-count-message { display:block; }
         </style>
         <?php
+    }
+
+    function include_template_function( $template_path ) {
+        if ( get_post_type() == 'movie_reviews' ) {
+            if ( is_single() ) {
+                // checks if the file exists in the theme first,
+                // otherwise serve the file from the plugin
+                if ( $theme_file = locate_template( array ( 'single-movie_reviews.php' ) ) ) {
+                    $template_path = $theme_file;
+                } else {
+                    $template_path = plugin_dir_path( __FILE__ ) . '/single-movie_reviews.php';
+                }
+            }
+        }
+        return $template_path;
     }
 
 }
