@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="ef175133-f21e-40f4-ba1e-16a0e2c7eba2" name="Localhost" url="http://localhost">
+        <fileTransfer mountedRoot="C:\wamp\www\Conferpedia" accessType="MOUNT" />
+      </webServer>
+    </option>
+  </component>
+</project>
